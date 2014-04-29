@@ -38,6 +38,8 @@ private slots:
    // void do_something(bool checked);
 
 
+    void on_actionPhrack_triggered();
+
 private:
     Ui::MainWindow *ui;
 

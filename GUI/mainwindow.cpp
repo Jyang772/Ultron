@@ -150,3 +150,8 @@ void MainWindow::cShell()
 }
 
 
+
+void MainWindow::on_actionPhrack_triggered()
+{
+
+}

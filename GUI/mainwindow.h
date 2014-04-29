@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QProcess>
+#include <string>
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -42,6 +44,14 @@ private:
 
         QProcess *process;
         QStringList options;
+
+
+        //DEBUG RADIO BUTTON TRACKING//
+        string result = "wget ";
+        string url;
+
+        bool wget = false;
+        bool debug = false;
 };
 
 #endif // MAINWINDOW_H

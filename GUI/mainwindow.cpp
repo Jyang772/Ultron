@@ -10,8 +10,6 @@
 using namespace std;
 
 
-string result = "wget ";
-string url;
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -50,7 +48,13 @@ void MainWindow::printOutput()
 void MainWindow::on_lineEdit_returnPressed()
 {
 
+    if(wget == true){
     url += result + ui->lineEdit->text().toStdString();
+    }
+    else if(debug == false)
+        url = "";
+    else
+        url = ui->lineEdit->text().toStdString();
 
     ui->lineEdit->clear();
 
@@ -67,13 +71,27 @@ void MainWindow::on_lineEdit_returnPressed()
     process->waitForFinished();
             //clear result buffer
     url.clear();
+
     }
 
 void MainWindow::on_radioButton_3_clicked(bool checked)
 {
+
     result = "";
     if(checked == false)
+    {
+        debug = false;
         result = "wget ";
+    }
+    else
+    {
+        debug = true;
+        url = ui->lineEdit->text().toStdString();
+        ui->radioButton_4->setChecked(false);                       //if debug is checked, uncheck wget.
+    }
+
+
+
 }
 
 void MainWindow::on_pushButton_2_clicked()
@@ -87,6 +105,8 @@ void MainWindow::on_pushButton_2_clicked()
     lol->doDownload();
 
 
+
+
 }
 
 
@@ -94,5 +114,13 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_radioButton_4_clicked(bool checked)
 {
+   if(checked)
+   {
+       ui->radioButton_3->setChecked(false);         //if wget button is checked, uncheck debug
+       on_radioButton_3_clicked(false);
+       wget = true;
 
+   }
+   else
+       wget = false;
 }

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Penguin</string>
+   <string>ULTRON Build .001</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pushButton">
@@ -88,6 +88,12 @@
     <property name="text">
      <string>Moodle</string>
     </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup_2</string>
+    </attribute>
    </widget>
    <widget class="QRadioButton" name="radioButton_2">
     <property name="geometry">
@@ -101,6 +107,12 @@
     <property name="text">
      <string>WebAssign</string>
     </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup_2</string>
+    </attribute>
    </widget>
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
@@ -173,6 +185,9 @@
     <property name="text">
      <string>Debug</string>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
     <property name="autoExclusive">
      <bool>false</bool>
     </property>
@@ -202,6 +217,9 @@
     <property name="text">
      <string>wget</string>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
     <property name="autoExclusive">
      <bool>false</bool>
     </property>
@@ -230,4 +248,7 @@
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup_2"/>
+ </buttongroups>
 </ui>

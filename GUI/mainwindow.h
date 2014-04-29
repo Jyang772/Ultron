@@ -37,7 +37,7 @@ private slots:
 //private:
     void on_radioButton_4_clicked(bool checked);
 
-public:
+private:
     Ui::MainWindow *ui;
 
         QProcess *process;

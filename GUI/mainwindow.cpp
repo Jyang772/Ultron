@@ -11,6 +11,7 @@ using namespace std;
 
 
 string result = "wget ";
+string url;
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -49,12 +50,12 @@ void MainWindow::printOutput()
 void MainWindow::on_lineEdit_returnPressed()
 {
 
-    result += ui->lineEdit->text().toStdString();
+    url += result + ui->lineEdit->text().toStdString();
 
     ui->lineEdit->clear();
 
     ui->label->setText("Fetching...");
-    QString lawl = QString::fromStdString(result);
+    QString lawl = QString::fromStdString(url);
 
     options.clear();
 #if defined(Q_OS_LINUX)
@@ -64,7 +65,8 @@ void MainWindow::on_lineEdit_returnPressed()
    // process->start(ui->lineEdit->text(), options);
 #endif
     process->waitForFinished();
-    result.clear();        //clear result buffer
+            //clear result buffer
+    url.clear();
     }
 
 void MainWindow::on_radioButton_3_clicked(bool checked)
@@ -86,9 +88,6 @@ void MainWindow::on_pushButton_2_clicked()
 
 
 }
-
-
-
 
 
 

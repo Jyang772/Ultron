@@ -28,9 +28,9 @@ private slots:
     void printOutput();
 
 
-    void on_radioButton_3_clicked();
+   // void on_radioButton_3_clicked();
 
-    void on_radioButton_3_toggled(bool checked);
+    //void on_radioButton_3_toggled(bool checked);
 
     void on_radioButton_3_clicked(bool checked);
 
@@ -38,6 +38,10 @@ private slots:
 
 //private:
     void on_radioButton_4_clicked(bool checked);
+
+    void do_something(bool checked);
+
+   // void on_radioButton_4_clicked();
 
 private:
     Ui::MainWindow *ui;

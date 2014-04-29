@@ -22,6 +22,14 @@ MainWindow::MainWindow(QWidget *parent) :
     process->setProcessChannelMode(QProcess::MergedChannels);
     connect (process, SIGNAL(readyReadStandardOutput()),this, SLOT(printOutput()));
 
+    //Already implemented by Form creator
+
+    //test connect
+   // connect(ui->radioButton_4, SIGNAL(toggled(bool)), this, SLOT(do_something(bool)));
+
+    //connect(ui->radioButton_3, SIGNAL(toggled(bool)), this, SLOT(do_something(bool)));
+    //connect(ui->radioButton_3, false, this, SLOT(on_radioButton_4_clicked(bool)));
+
 
 }
 
@@ -77,14 +85,15 @@ void MainWindow::on_lineEdit_returnPressed()
 void MainWindow::on_radioButton_3_clicked(bool checked)
 {
 
-    result = "";
+
     if(checked == false)
     {
         debug = false;
-        result = "wget ";
+        //result = "wget ";
     }
     else
     {
+        result = "";
         debug = true;
         url = ui->lineEdit->text().toStdString();
         ui->radioButton_4->setChecked(false);                       //if debug is checked, uncheck wget.
@@ -104,9 +113,6 @@ void MainWindow::on_pushButton_2_clicked()
 
     lol->doDownload();
 
-
-
-
 }
 
 
@@ -124,3 +130,5 @@ void MainWindow::on_radioButton_4_clicked(bool checked)
    else
        wget = false;
 }
+
+

@@ -153,5 +153,5 @@ void MainWindow::cShell()
 
 void MainWindow::on_actionPhrack_triggered()
 {
-
+    QMessageBox::information(this,"PhrackR v1.0", "Phrack Reader Not Installed!");
 }

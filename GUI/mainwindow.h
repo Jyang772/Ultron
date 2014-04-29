@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QMessageBox>
 #include <QMainWindow>
 #include <QProcess>
 #include <string>
@@ -36,6 +37,7 @@ private slots:
     void on_radioButton_4_clicked(bool checked);
 
    // void do_something(bool checked);
+
 
 
     void on_actionPhrack_triggered();

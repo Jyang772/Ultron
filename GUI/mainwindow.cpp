@@ -57,6 +57,7 @@ void MainWindow::on_lineEdit_returnPressed()
 {
 
     if(wget == true){
+        result = "wget ";
     url += result + ui->lineEdit->text().toStdString();
     }
     else if(debug == false)
@@ -65,7 +66,8 @@ void MainWindow::on_lineEdit_returnPressed()
         url = ui->lineEdit->text().toStdString();
 
     ui->lineEdit->clear();
-
+    cShell();
+    /*
     ui->label->setText("Fetching...");
     QString lawl = QString::fromStdString(url);
 
@@ -78,6 +80,7 @@ void MainWindow::on_lineEdit_returnPressed()
 #endif
     process->waitForFinished();
             //clear result buffer
+    */
     url.clear();
 
     }
@@ -95,6 +98,7 @@ void MainWindow::on_radioButton_3_clicked(bool checked)
     {
         result = "";
         debug = true;
+        wget = false;
         url = ui->lineEdit->text().toStdString();
         ui->radioButton_4->setChecked(false);                       //if debug is checked, uncheck wget.
     }
@@ -108,15 +112,10 @@ void MainWindow::on_pushButton_2_clicked()
 
 
     ui->label_5->setText("Authentication Accepted!");
-
     Downloader * lol = new Downloader();
-
     lol->doDownload();
 
 }
-
-
-
 
 void MainWindow::on_radioButton_4_clicked(bool checked)
 {
@@ -124,11 +123,30 @@ void MainWindow::on_radioButton_4_clicked(bool checked)
    {
        ui->radioButton_3->setChecked(false);         //if wget button is checked, uncheck debug
        on_radioButton_3_clicked(false);
+
        wget = true;
 
    }
    else
        wget = false;
+}
+
+//create new header file
+
+void MainWindow::cShell()
+{
+    ui->label->setText("Fetching...");
+    QString lawl = QString::fromStdString(url);
+
+    options.clear();
+#if defined(Q_OS_LINUX)
+    options << "-c" << lawl;
+    process->start("/bin/sh", options);
+#elif defined(Q_OS_WIN)
+   // process->start(ui->lineEdit->text(), options);
+#endif
+    process->waitForFinished();
+            //clear result buffer
 }
 
 

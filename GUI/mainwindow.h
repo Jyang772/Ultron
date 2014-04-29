@@ -28,20 +28,15 @@ private slots:
     void printOutput();
 
 
-   // void on_radioButton_3_clicked();
-
-    //void on_radioButton_3_toggled(bool checked);
 
     void on_radioButton_3_clicked(bool checked);
 
     void on_pushButton_2_clicked();
 
-//private:
     void on_radioButton_4_clicked(bool checked);
 
-    void do_something(bool checked);
+   // void do_something(bool checked);
 
-   // void on_radioButton_4_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -56,6 +51,10 @@ private:
 
         bool wget = false;
         bool debug = false;
+
+
+       //QProcess create
+        void cShell();
 };
 
 #endif // MAINWINDOW_H

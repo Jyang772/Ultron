@@ -32,7 +32,7 @@ private slots:
 
     void on_radioButton_3_clicked(bool checked);
 
-    void on_pushButton_2_clicked();
+    //void on_pushButton_2_clicked();
 
     void on_radioButton_4_clicked(bool checked);
 
@@ -41,6 +41,8 @@ private slots:
 
 
     void on_actionPhrack_triggered();
+
+    void on_login_clicked();
 
 private:
     Ui::MainWindow *ui;

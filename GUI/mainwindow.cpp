@@ -107,15 +107,6 @@ void MainWindow::on_radioButton_3_clicked(bool checked)
 
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
-
-
-    ui->label_5->setText("Authentication Accepted!");
-    Downloader * lol = new Downloader();
-    lol->doDownload();
-
-}
 
 void MainWindow::on_radioButton_4_clicked(bool checked)
 {
@@ -154,4 +145,11 @@ void MainWindow::cShell()
 void MainWindow::on_actionPhrack_triggered()
 {
     QMessageBox::information(this,"PhrackR v1.0", "Phrack Reader Not Installed!");
+}
+
+void MainWindow::on_login_clicked()
+{
+    ui->label_5->setText("Authentication Accepted!");
+    Downloader * lol = new Downloader();
+    lol->doDownload();
 }

@@ -1,6 +1,7 @@
 #include "downloader.h"
 
 #include <string>
+//#include <QWebView>
 using namespace std;
 
 
@@ -14,12 +15,25 @@ void Downloader::doDownload()
 {
     manager = new QNetworkAccessManager(this);
 
+
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
 
-    string lol = "http://micropenguin.net/files/MarkII.txt";
-    QString(lol2) = QString::fromStdString(lol);
-    manager->get(QNetworkRequest(QUrl(lol2)));
+    QByteArray loginData("username=user&password=pass");
+    QNetworkRequest request(QUrl("http://moodle.redlands.edu/mod/resource/view.php?id=114198"));
+    manager->post(request,loginData);
+
+
+    QUrl URL = QUrl("http://moodle.redlands.edu/mod/resource/view.php?id=114198");
+    manager->get(QNetworkRequest(URL));
+
+/*
+    QNetworkAccessManager network;
+    QByteArray loginData("user=myName&password=myPassword");
+    QNetworkRequest request(QUrl("http://mySite.com/login"));
+    QNetworkReply* pReply(network.post(request, loginData);
+*/
+
 }
 
 void Downloader::replyFinished (QNetworkReply *reply)

@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QT += network
 
+
 CONFIG += c++11
 
 TARGET = ULTRON
@@ -22,6 +23,7 @@ SOURCES += main.cpp\
     downloader.cpp
 
 HEADERS  += mainwindow.h \
-    downloader.h
+    downloader.h \
+    login.h
 
 FORMS    += mainwindow.ui

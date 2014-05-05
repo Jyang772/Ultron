@@ -67,20 +67,6 @@ void MainWindow::on_lineEdit_returnPressed()
 
     ui->lineEdit->clear();
     cShell();
-    /*
-    ui->label->setText("Fetching...");
-    QString lawl = QString::fromStdString(url);
-
-    options.clear();
-#if defined(Q_OS_LINUX)
-    options << "-c" << lawl;
-    process->start("/bin/sh", options);
-#elif defined(Q_OS_WIN)
-   // process->start(ui->lineEdit->text(), options);
-#endif
-    process->waitForFinished();
-            //clear result buffer
-    */
     url.clear();
 
     }
@@ -153,3 +139,5 @@ void MainWindow::on_login_clicked()
     Downloader * lol = new Downloader();
     lol->doDownload();
 }
+
+

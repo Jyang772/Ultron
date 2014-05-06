@@ -1,7 +1,9 @@
 #include "downloader.h"
+#include "cookiesHandler.h"
 
 #include <string>
-//#include <QWebView>
+#include <QEventLoop>
+#include <QTimer>
 using namespace std;
 
 
@@ -19,13 +21,20 @@ void Downloader::doDownload()
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
 
-    QByteArray loginData("username=user&password=pass");
-    QNetworkRequest request(QUrl("http://moodle.redlands.edu/mod/resource/view.php?id=114198"));
-    manager->post(request,loginData);
 
 
-    QUrl URL = QUrl("http://moodle.redlands.edu/mod/resource/view.php?id=114198");
-    manager->get(QNetworkRequest(URL));
+    QByteArray loginData;
+    //loginData.append("username="+username+"&password="+password+"&action=login");
+    loginData.append("username=justin_yang&password=bee1230");
+
+
+    cookiesHandler* test = new cookiesHandler(this);
+    QUrl url("https://moodle.redlands.edu/login/index.php");
+    QUrl request("http://moodle.redlands.edu/my/");
+    test->sendPostRequest(url, loginData);
+    //test->sendGetRequest(request);
+
+
 
 /*
     QNetworkAccessManager network;
@@ -33,6 +42,7 @@ void Downloader::doDownload()
     QNetworkRequest request(QUrl("http://mySite.com/login"));
     QNetworkReply* pReply(network.post(request, loginData);
 */
+
 
 }
 
@@ -51,6 +61,7 @@ void Downloader::replyFinished (QNetworkReply *reply)
         qDebug() << reply->header(QNetworkRequest::ContentLengthHeader).toULongLong();
         qDebug() << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
         qDebug() << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
+        qDebug() << "redirected: " << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
 
 
 
@@ -62,8 +73,13 @@ void Downloader::replyFinished (QNetworkReply *reply)
             file->close();
         }
         delete file;
-    }
 
-    reply->deleteLater();
+    }
 }
 
+void Downloader::provideAuthentication(QNetworkReply *reply, QAuthenticator *ator)
+{
+    qDebug() << reply->readAll(); // this is just to see what we received
+    ator->setUser(QString("justin_yang"));
+    ator->setPassword(QString("bee1230"));
+}

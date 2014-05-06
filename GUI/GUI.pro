@@ -24,6 +24,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     downloader.h \
-    login.h
+    cookiesHandler.h
 
 FORMS    += mainwindow.ui

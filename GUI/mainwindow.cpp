@@ -137,6 +137,7 @@ void MainWindow::on_login_clicked()
 {
     ui->label_5->setText("Authentication Accepted!");
     Downloader * lol = new Downloader();
+    lol->url = ui->lineEdit->text();
     lol->username = ui->lineEdit_2->text();
     lol->password = ui->lineEdit_3->text();
     lol->doDownload();

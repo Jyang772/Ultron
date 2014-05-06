@@ -34,6 +34,7 @@ public:
 
     QString username;
     QString password;
+    QString url;
 
 signals:
 

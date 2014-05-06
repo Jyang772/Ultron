@@ -25,9 +25,15 @@ void Downloader::doDownload()
 
     cookiesHandler* test = new cookiesHandler(this);
     QUrl url("https://moodle.redlands.edu/login/index.php");
-    QUrl request("http://moodle.redlands.edu/my/");
-    test->sendPostRequest(url, loginData);
+    QUrl request("http://moodle.redlands.edu/course/view.php?id=3784");
+    test->sendPostRequest(request, loginData);
     //test->sendGetRequest(request);
+
+    //optional:
+    //Allow user to enter Moodle Login Page and save it, or just enter course page
+    //If Moodle Login Page, replace 'request' with 'url' and enable sendGetRequest for course pages
+    //else leave alone
+    //Gravity Cat is Watching
 
 
 

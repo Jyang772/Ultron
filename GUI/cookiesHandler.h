@@ -52,8 +52,8 @@ private slots:
         }
 
         //Cookies//
-        //QList<QNetworkCookie>  cookies = mManager->cookieJar()->cookiesForUrl(mUrl);
-        //qDebug() << "COOKIES for" << mUrl.host() << cookies;
+        QList<QNetworkCookie>  cookies = mManager->cookieJar()->cookiesForUrl(mUrl);
+        qDebug() << "COOKIES for" << mUrl.host() << cookies;
         //End Cookies//
 
         int v = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -68,17 +68,29 @@ private slots:
                 else if (v >= 300 && v < 400) // Redirection
                 {
                     /* Use Cookies for Login */
-                    //QVariant var;
-                    //var.setValue(cookies);
-                    //r.setHeader(QNetworkRequest::CookieHeader, var);
+
                     /********************/
 
                 qDebug() << "REDIRECTING";
 
-                    rUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+                rUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
 
-                    mManager->post(QNetworkRequest(rUrl),login);
+
+                //if redirected URL is not the same as requested, then POST again
+                if(rUrl != mUrl){
+
+                    qDebug() << rUrl;
+
+                                   mManager->post(QNetworkRequest(rUrl),login);
+                                   return;
+                }
+
+
                     QNetworkRequest r(mUrl);
+                    QVariant var;
+                    var.setValue(cookies);
+
+                    r.setHeader(QNetworkRequest::CookieHeader, var);
                     mManager->get(r);
                     return;
 

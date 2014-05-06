@@ -61,6 +61,7 @@ private:
 
        //QProcess create
         void cShell();
+
 };
 
 #endif // MAINWINDOW_H

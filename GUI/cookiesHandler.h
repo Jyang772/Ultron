@@ -2,6 +2,7 @@
 #define COOKIESHANDLER_H
 
 
+
 #include <string>
 #include <QObject>
 #include <QNetworkAccessManager>
@@ -17,6 +18,8 @@
 #include <QDateTime>
 #include <QFile>
 #include <QDebug>
+#include <QTextStream>
+
 
 class cookiesHandler: public QObject{
     Q_OBJECT
@@ -43,6 +46,9 @@ connect(mManager, SIGNAL(finished(QNetworkReply*)), SLOT(replyFinished(QNetworkR
         mManager->get(r);
     }
 
+
+
+
     virtual ~cookiesHandler(){}
 
 private slots:
@@ -55,7 +61,25 @@ private slots:
         //Cookies//
         QList<QNetworkCookie>  cookies = mManager->cookieJar()->cookiesForUrl(mUrl);
         qDebug() << "COOKIES for" << mUrl.host() << cookies;
+
         //End Cookies//
+
+
+//Output in file//
+
+        QFile lawl("debug");
+        lawl.open(QIODevice::Append | QIODevice::Text | QIODevice::Truncate);
+        QTextStream out(&lawl);
+
+        out << reply->header(QNetworkRequest::ContentTypeHeader).toString() << endl;
+        out << reply->header(QNetworkRequest::LastModifiedHeader).toDateTime().toString() << endl;
+        out << reply->header(QNetworkRequest::ContentLengthHeader).toULongLong() << endl;
+        out << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() << endl;
+        out << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString() << endl;
+
+
+
+
 
         int v = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
                 if (v >= 200 && v < 300) // Success
@@ -75,7 +99,20 @@ private slots:
 
                 qDebug() << "REDIRECTING";
 
+
+
                 rUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+
+                if(rUrl != mUrl)
+                 {
+
+                    mManager->post(QNetworkRequest(rUrl),login);
+                    return;}
+
+
+                qDebug() << rUrl;
+                qDebug() << mUrl;
+                out << QString("redirected: " + rUrl.toEncoded()) << endl;
 
                     QNetworkRequest r(mUrl);
                     QVariant var;
@@ -103,6 +140,8 @@ private slots:
         qDebug() << "redirected: " << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
 
 
+
+
         QFile *file = new QFile("lol");
         if(file->open(QFile::WriteOnly))
         {
@@ -110,7 +149,21 @@ private slots:
             file->flush();
             file->close();
         }
+/*
+        QFile lawl("LAWL");
+        lawl.open(QIODevice::Append | QIODevice::Text | QIODevice::Truncate);
+        QTextStream out(&lawl);
+        out << reply->header(QNetworkRequest::ContentTypeHeader).toString() << endl;
+        out << reply->header(QNetworkRequest::LastModifiedHeader).toDateTime().toString() << endl;
+        out << reply->header(QNetworkRequest::ContentLengthHeader).toULongLong() << endl;
+        out << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() << endl;
+        out << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString() << endl;
+        out << QString("redirected: " + rUrl.toEncoded());
+*/
+
+
         delete file;
+
     }
 
 private:
@@ -120,9 +173,14 @@ private:
     QUrl test;
     QByteArray login;
     QVariant var;
+    QFile Test;
+
+
+
 
 public:
     bool finished = false;
+
 
 };
 

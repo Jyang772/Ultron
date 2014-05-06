@@ -1,11 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "downloader.h"
+
+#include "cookiesHandler.h"
 
 #include <QProcess>
 #include <stdlib.h>
 #include <string>
 #include <iostream>
+
+#include <QTimer>
 
 using namespace std;
 
@@ -136,11 +139,37 @@ void MainWindow::on_actionPhrack_triggered()
 void MainWindow::on_login_clicked()
 {
     ui->label_5->setText("Authentication Accepted!");
-    Downloader * lol = new Downloader();
+   /* Downloader * lol = new Downloader();
     lol->url = ui->lineEdit->text();
     lol->username = ui->lineEdit_2->text();
     lol->password = ui->lineEdit_3->text();
     lol->doDownload();
+*/
+
+    QByteArray loginData;
+    //loginData.append("username="+username+"&password="+password+"&action=login");
+   // loginData.append("username=justin@micropenguin.net&password=Password12&action=do_login");
+    loginData.append("username=justin_yang&password=bee1230");
+
+
+    cookiesHandler* test = new cookiesHandler(this);
+    QUrl url("https://moodle.redlands.edu/login/index.php");
+    QUrl request("http://moodle.redlands.edu/mod/forum/view.php?id=114195");
+
+    test->sendPostRequest(url, loginData);
+    test->sendGetRequest(request);
+
+
+    QEventLoop loop;
+        QTimer::singleShot(8000, &loop, SLOT(quit()));
+        loop.exec();
+
+        QFile file("debug");
+        file.open(QIODevice::ReadOnly | QIODevice::Text);
+        QTextStream outStream(&file);
+        QString text = outStream.readAll();
+
+        ui->display->setPlainText(text);
 
 }
 

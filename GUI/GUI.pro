@@ -19,11 +19,9 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    downloader.cpp
+        mainwindow.cpp
 
 HEADERS  += mainwindow.h \
-    downloader.h \
     cookiesHandler.h
 
 FORMS    += mainwindow.ui

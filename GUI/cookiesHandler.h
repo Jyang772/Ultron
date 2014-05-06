@@ -2,7 +2,7 @@
 #define COOKIESHANDLER_H
 
 
-
+#include "mainwindow.h"
 #include <string>
 #include <QObject>
 #include <QNetworkAccessManager>

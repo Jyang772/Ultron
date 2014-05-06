@@ -147,9 +147,9 @@ void MainWindow::on_login_clicked()
 */
 
     QByteArray loginData;
-    //loginData.append("username="+username+"&password="+password+"&action=login");
+    loginData.append("username="+(ui->lineEdit_2->text())+"&password="+(ui->lineEdit_3->text())+"&action=login");
    // loginData.append("username=justin@micropenguin.net&password=Password12&action=do_login");
-    loginData.append("username=justin_yang&password=bee1230");
+    //loginData.append("username=justin_yang&password=bee1230");
 
 
     cookiesHandler* test = new cookiesHandler(this);
@@ -174,3 +174,10 @@ void MainWindow::on_login_clicked()
 }
 
 
+
+void MainWindow::on_lineEdit_3_returnPressed()
+{
+    on_login_clicked();
+    ui->lineEdit_3->clear();
+    ui->lineEdit_2->clear();
+}

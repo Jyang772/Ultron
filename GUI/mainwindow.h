@@ -44,6 +44,9 @@ private slots:
 
     void on_login_clicked();
 
+
+    void on_lineEdit_3_returnPressed();
+
 private:
     Ui::MainWindow *ui;
 

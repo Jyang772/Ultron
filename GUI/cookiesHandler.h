@@ -9,6 +9,7 @@
 #include <QNetworkReply>
 #include <QNetworkCookieJar>
 #include <QNetworkCookie>
+#include <QEventLoop>
 #include <QList>
 #include <QAuthenticator>
 #include <QUrlQuery>
@@ -24,7 +25,7 @@ public:
     cookiesHandler(QObject *parent = 0) : QObject(parent){
         mManager = new QNetworkAccessManager(this);
         mManager->setCookieJar(new QNetworkCookieJar(this));
-       connect(mManager, SIGNAL(finished(QNetworkReply*)), SLOT(replyFinished(QNetworkReply*)));
+connect(mManager, SIGNAL(finished(QNetworkReply*)), SLOT(replyFinished(QNetworkReply*)));
     }
 
     void sendPostRequest(const QUrl &url, const QByteArray &data){
@@ -37,8 +38,8 @@ public:
     void sendGetRequest(const QUrl &url)
     {
         mUrl = url;
+        test = mUrl;
         QNetworkRequest r(mUrl);
-        //r.setHeader(QNetworkRequest::CookieHeader, var);
         mManager->get(r);
     }
 
@@ -62,6 +63,7 @@ private slots:
 
 
                     getFile(reply);
+
                      // Here we got the final reply
                    return;
                 }
@@ -75,17 +77,6 @@ private slots:
 
                 rUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
 
-
-                //if redirected URL is not the same as requested, then POST again
-                if(rUrl != mUrl){
-
-                    qDebug() << rUrl;
-
-                                   mManager->post(QNetworkRequest(rUrl),login);
-                                   return;
-                }
-
-
                     QNetworkRequest r(mUrl);
                     QVariant var;
                     var.setValue(cookies);
@@ -95,6 +86,9 @@ private slots:
                     return;
 
                 }
+
+
+
 
     }
 
@@ -123,8 +117,13 @@ private:
     QNetworkAccessManager *mManager;
     QUrl mUrl;
     QUrl rUrl;
+    QUrl test;
     QByteArray login;
     QVariant var;
+
+public:
+    bool finished = false;
+
 };
 
 

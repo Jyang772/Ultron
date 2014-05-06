@@ -2,8 +2,7 @@
 #include "cookiesHandler.h"
 
 #include <string>
-#include <QEventLoop>
-#include <QTimer>
+
 using namespace std;
 
 
@@ -15,11 +14,7 @@ Downloader::Downloader(QObject *parent) :
 
 void Downloader::doDownload()
 {
-    manager = new QNetworkAccessManager(this);
 
-
-    connect(manager, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT(replyFinished(QNetworkReply*)));
 
 
 
@@ -46,6 +41,7 @@ void Downloader::doDownload()
 
 }
 
+/*
 void Downloader::replyFinished (QNetworkReply *reply)
 {
     if(reply->error())
@@ -76,10 +72,4 @@ void Downloader::replyFinished (QNetworkReply *reply)
 
     }
 }
-
-void Downloader::provideAuthentication(QNetworkReply *reply, QAuthenticator *ator)
-{
-    qDebug() << reply->readAll(); // this is just to see what we received
-    ator->setUser(QString("justin_yang"));
-    ator->setPassword(QString("bee1230"));
-}
+*/

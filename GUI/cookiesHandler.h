@@ -51,6 +51,11 @@ private slots:
             return;
         }
 
+        //Cookies//
+        //QList<QNetworkCookie>  cookies = mManager->cookieJar()->cookiesForUrl(mUrl);
+        //qDebug() << "COOKIES for" << mUrl.host() << cookies;
+        //End Cookies//
+
         int v = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
                 if (v >= 200 && v < 300) // Success
                 {
@@ -62,10 +67,13 @@ private slots:
                 }
                 else if (v >= 300 && v < 400) // Redirection
                 {
+                    /* Use Cookies for Login */
+                    //QVariant var;
+                    //var.setValue(cookies);
+                    //r.setHeader(QNetworkRequest::CookieHeader, var);
+                    /********************/
+
                 qDebug() << "REDIRECTING";
-
-
-
 
                     rUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
 
@@ -73,17 +81,8 @@ private slots:
                     QNetworkRequest r(mUrl);
                     mManager->get(r);
                     return;
-                    /*
-                    QNetworkRequest r(mUrl);
-                    mManager->get(r);
-                    return; // to keep the manager for the next request
-                    */
+
                 }
-
-
-
-       // getFile(reply);
-
 
     }
 
@@ -96,6 +95,7 @@ private slots:
         qDebug() << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
         qDebug() << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
         qDebug() << "redirected: " << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+
 
         QFile *file = new QFile("lol");
         if(file->open(QFile::WriteOnly))

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <QObject>
+/*
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -15,6 +16,8 @@
 #include <QDateTime>
 #include <QFile>
 #include <QDebug>
+*/
+
 
 #include <mainwindow.h>
 
@@ -35,13 +38,10 @@ public:
 signals:
 
 public slots:
-    void replyFinished (QNetworkReply *reply);
-    void provideAuthentication(QNetworkReply *reply, QAuthenticator *ator);
 
 
 
 private:
-   QNetworkAccessManager *manager;
 
 
 

@@ -58,19 +58,30 @@ private slots:
             return;
         }
 
+
+
+
         //Cookies//
         QList<QNetworkCookie>  cookies = mManager->cookieJar()->cookiesForUrl(mUrl);
         qDebug() << "COOKIES for" << mUrl.host() << cookies;
+
+        QString str;
+        QDebug dStream(&str);
+
+        dStream << mUrl.host() << cookies;
 
         //End Cookies//
 
 
 //Output in file//
-
         QFile lawl("debug");
+        if(remove)                  //Remove existing file
+           { lawl.remove();
+            remove = false;}
+
         lawl.open(QIODevice::Append | QIODevice::Text | QIODevice::Truncate);
         QTextStream out(&lawl);
-
+        out << str << endl;
         out << reply->header(QNetworkRequest::ContentTypeHeader).toString() << endl;
         out << reply->header(QNetworkRequest::LastModifiedHeader).toDateTime().toString() << endl;
         out << reply->header(QNetworkRequest::ContentLengthHeader).toULongLong() << endl;
@@ -180,6 +191,7 @@ private:
 
 public:
     bool finished = false;
+    bool remove = true;
 
 
 };

@@ -153,11 +153,11 @@ void MainWindow::on_login_clicked()
 
 
     cookiesHandler* test = new cookiesHandler(this);
-    QUrl url("https://moodle.redlands.edu/login/index.php");
+    //QUrl url("https://moodle.redlands.edu/login/index.php");
     QUrl request("http://moodle.redlands.edu/mod/forum/view.php?id=114195");
-
-    test->sendPostRequest(url, loginData);
-    test->sendGetRequest(request);
+    //QUrl request("http://f.kulfoto.com/pic/0001/0044/uhHo343159.jpg?802775");
+    test->sendPostRequest(request, loginData);
+    //test->sendGetRequest(request);
 
 
     QEventLoop loop;

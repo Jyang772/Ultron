@@ -152,7 +152,7 @@ private slots:
 
 
 
-
+    //Create file
         QFile *file = new QFile("lol");
         if(file->open(QFile::WriteOnly))
         {
@@ -160,17 +160,6 @@ private slots:
             file->flush();
             file->close();
         }
-/*
-        QFile lawl("LAWL");
-        lawl.open(QIODevice::Append | QIODevice::Text | QIODevice::Truncate);
-        QTextStream out(&lawl);
-        out << reply->header(QNetworkRequest::ContentTypeHeader).toString() << endl;
-        out << reply->header(QNetworkRequest::LastModifiedHeader).toDateTime().toString() << endl;
-        out << reply->header(QNetworkRequest::ContentLengthHeader).toULongLong() << endl;
-        out << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() << endl;
-        out << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString() << endl;
-        out << QString("redirected: " + rUrl.toEncoded());
-*/
 
 
         delete file;

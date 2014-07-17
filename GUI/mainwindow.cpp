@@ -139,17 +139,10 @@ void MainWindow::on_actionPhrack_triggered()
 void MainWindow::on_login_clicked()
 {
     ui->label_5->setText("Authentication Accepted!");
-   /* Downloader * lol = new Downloader();
-    lol->url = ui->lineEdit->text();
-    lol->username = ui->lineEdit_2->text();
-    lol->password = ui->lineEdit_3->text();
-    lol->doDownload();
-*/
+
 
     QByteArray loginData;
     loginData.append("username="+(ui->lineEdit_2->text())+"&password="+(ui->lineEdit_3->text())+"&action=login");
-   // loginData.append("username=justin@micropenguin.net&password=Password12&action=do_login");
-    //loginData.append("username=justin_yang&password=bee1230");
 
 
     cookiesHandler* test = new cookiesHandler(this);

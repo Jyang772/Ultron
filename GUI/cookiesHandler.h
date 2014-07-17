@@ -73,7 +73,7 @@ private slots:
         //End Cookies//
 
 
-//Output in file//
+        //Output in file//
         QFile lawl("debug");
         if(remove)                  //Remove existing file
            { lawl.remove();

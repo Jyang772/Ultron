@@ -19,9 +19,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    steamlog.cpp
 
 HEADERS  += mainwindow.h \
-    cookiesHandler.h
+    cookiesHandler.h \
+    steamlog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    steamlog.ui

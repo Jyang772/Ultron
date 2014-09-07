@@ -5,6 +5,8 @@
 #include <QMainWindow>
 #include <QProcess>
 #include <string>
+
+#include "steamlog.h"
 using namespace std;
 
 namespace Ui {
@@ -47,6 +49,8 @@ private slots:
 
     void on_lineEdit_3_returnPressed();
 
+    void on_actionSteamLogger_triggered();
+
 private:
     Ui::MainWindow *ui;
 
@@ -64,6 +68,10 @@ private:
 
        //QProcess create
         void cShell();
+
+        SteamLog *test;
+
+
 
 };
 

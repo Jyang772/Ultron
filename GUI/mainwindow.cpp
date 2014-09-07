@@ -10,6 +10,7 @@
 
 #include <QTimer>
 
+
 using namespace std;
 
 
@@ -33,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect(ui->radioButton_3, SIGNAL(toggled(bool)), this, SLOT(do_something(bool)));
     //connect(ui->radioButton_3, false, this, SLOT(on_radioButton_4_clicked(bool)));
 
+
+    test = new SteamLog(this);
 
 }
 
@@ -173,4 +176,16 @@ void MainWindow::on_lineEdit_3_returnPressed()
     on_login_clicked();
     ui->lineEdit_3->clear();
     ui->lineEdit_2->clear();
+}
+
+
+
+void MainWindow::on_actionSteamLogger_triggered()
+{
+    if(!test){
+        test = new SteamLog(this);
+    }
+    test->activateWindow();
+    test->show();
+
 }

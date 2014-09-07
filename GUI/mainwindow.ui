@@ -347,6 +347,7 @@
      <string>Tools</string>
     </property>
     <addaction name="actionPhrack"/>
+    <addaction name="actionSteamLogger"/>
    </widget>
    <addaction name="menuMenu"/>
    <addaction name="menuTools"/>
@@ -354,6 +355,11 @@
   <action name="actionPhrack">
    <property name="text">
     <string>Phrack</string>
+   </property>
+  </action>
+  <action name="actionSteamLogger">
+   <property name="text">
+    <string>SteamLogger...</string>
    </property>
   </action>
  </widget>

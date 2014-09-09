@@ -29,6 +29,9 @@ public:
         mManager = new QNetworkAccessManager(this);
         mManager->setCookieJar(new QNetworkCookieJar(this));
 connect(mManager, SIGNAL(finished(QNetworkReply*)), SLOT(replyFinished(QNetworkReply*)));
+
+     finished = false;
+     remove = true;
     }
 
     void sendPostRequest(const QUrl &url, const QByteArray &data){

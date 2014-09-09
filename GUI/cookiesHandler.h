@@ -179,8 +179,8 @@ private:
 
 
 public:
-    bool finished = false;
-    bool remove = true;
+    bool finished;// = false;
+    bool remove;// = true;
 
 
 };

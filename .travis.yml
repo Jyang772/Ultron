@@ -5,6 +5,6 @@ before_install:
  - sudo apt-get install qt5-default qttools5-dev-tools
 
 script:
- - qmake -project "QT += core gui widgets network"
+ - qmake -project "QT += core gui widgets network" "CONFIG += c++11"
  - qmake Ultron.pro
  - make

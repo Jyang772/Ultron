@@ -1,5 +1,6 @@
 install:
   - sudo apt-get update
+  - sudo echo "deb http://http.debian.net/debian" >> /etc/apt/sources.list
   - sudo apt-get install qt5-default qttools5-dev-tools
 
 script:

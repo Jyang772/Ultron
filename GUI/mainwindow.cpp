@@ -37,6 +37,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     test = new SteamLog(this);
 
+    result = "wget ";
+
+    wget = false;
+    debug= false;
+
 }
 
 

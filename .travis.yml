@@ -6,5 +6,5 @@ before_install:
 
 script:
  - qmake -project "QT += core gui widgets network"
- - qmake GUI.pro
+ - qmake Ultron.pro
  - make

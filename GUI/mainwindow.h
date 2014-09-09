@@ -59,11 +59,11 @@ private:
 
 
         //DEBUG RADIO BUTTON TRACKING//
-        string result = "wget ";
+        string result;// = "wget ";
         string url;
 
-        bool wget = false;
-        bool debug = false;
+        bool wget;// = false;
+        bool debug;// = false;
 
 
        //QProcess create
